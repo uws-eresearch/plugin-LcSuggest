@@ -106,8 +106,9 @@ class LcSuggest_IndexController extends Omeka_Controller_AbstractActionControlle
 
         //Loop through the items array and creat another array for each item
         $names = array();
-        foreach ($json->items as $name){
-        	array_push($names, $name->rendered_val);
+        foreach ($json->items as $person){
+        	$name = $person->rendered_val . " <" . $person->id .">";
+        	array_push($names, $name);
         }
         $this->_helper->json($names);
     }
