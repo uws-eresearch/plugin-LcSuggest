@@ -98,8 +98,8 @@ class LcSuggest_IndexController extends Omeka_Controller_AbstractActionControlle
         //$client->setUri($lcSuggest->suggest_endpoint);
         //$client->setParameterGet('q', $this->getRequest()->getParam('term'));
         
-        $client->setUri('http://fml.data.ac.nz/fillmylist?entity_type=person&output=json');
-        $client->setParameterGet('gname', $this->getRequest()->getParam('term'));
+        $client->setUri('http://fml.uws.edu.au/fillmylist?entity_type=person&output=json&method=generic');
+        $client->setParameterGet('name', $this->getRequest()->getParam('term'));
         
         $json = json_decode($client->request()->getBody());
         //$this->_helper->json($json[1]);
