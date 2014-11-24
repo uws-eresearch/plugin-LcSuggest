@@ -95,19 +95,18 @@ class LcSuggest_IndexController extends Omeka_Controller_AbstractActionControlle
         // Query the specified Library of Congress suggest endpoint, get the 
         // response, and output suggestions in JSON.
         $client = new Zend_Http_Client();
-        //$client->setUri($lcSuggest->suggest_endpoint);
-        //$client->setParameterGet('q', $this->getRequest()->getParam('term'));
+        $client->setUri($lcSuggest->suggest_endpoint);
         
-        $client->setUri('http://fml.uws.edu.au/fillmylist?entity_type=person&output=json&method=generic');
-        $client->setParameterGet('name', $this->getRequest()->getParam('term'));
+        $name_term = $this->getRequest()->getParam('term');
+        $client->setParameterGet('name', $name_term);
+        $client->setParameterGet('dob', '');
         
         $json = json_decode($client->request()->getBody());
-        //$this->_helper->json($json[1]);
 
         //Loop through the items array and creat another array for each item
         $names = array();
-        foreach ($json->items as $person){
-        	$name = $person->rendered_val . " <" . $person->id .">";
+        foreach ($json as $person){
+        	$name = $person->given_names . " " . $person->family_name . " <" . $person->id . ">";
         	array_push($names, $name);
         }
         $this->_helper->json($names);

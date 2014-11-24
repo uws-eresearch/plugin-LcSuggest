@@ -48,7 +48,11 @@ class Table_LcSuggest extends Omeka_Db_Table
         'http://id.loc.gov/authorities/names/suggest' => array(
             'name' => 'Library of Congress Names', 
             'url'  => 'http://id.loc.gov/authorities/names.html', 
-        ), 
+        ),
+        'http://api-daao.hol.ly/v1/person/' => array(
+        	'name' => 'DAAO names',
+        	'url' => 'http://api-daao.hol.ly/v1/person/',
+        ),
         'http://id.loc.gov/authorities/childrensSubjects/suggest' => array(
             'name' => 'Library of Congress Children\'s Subject Headings', 
             'url'  => 'http://id.loc.gov/authorities/childrensSubjects.html', 
